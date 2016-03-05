@@ -24,7 +24,7 @@ public class CustomerService {
 	}
 	
 	public boolean createCustomer(Customer customer){
-		return false;
+		return DatabaseUtil.insert(Customer.class, customer);
 		
 	}
 	

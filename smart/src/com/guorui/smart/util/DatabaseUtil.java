@@ -1,6 +1,7 @@
 package com.guorui.smart.util;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -78,35 +79,99 @@ public class DatabaseUtil {
 		}
 	}
 
-	public static <T> List<T> queryEntityList(Class<T> entityClass, String sql, Object...params){
+	public static <T> List<T> queryEntityList(Class<T> entityClass, String sql, Object... params) {
 		Connection conn = getConnection();
 		List<T> list = null;
 		try {
-			list = QUERY_RUNNER.query(conn, sql, new BeanListHandler<>(entityClass),params);
+			list = QUERY_RUNNER.query(conn, sql, new BeanListHandler<>(entityClass), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally{
+		} finally {
 			closeConnection();
 		}
-		
+
 		return list;
 	}
 
-	public static <T> T queryEntity(Class<T> entityClass, String sql, Object...params){
+	public static <T> T queryEntity(Class<T> entityClass, String sql, Object... params) {
 		T entity = null;
-		
+
 		try {
 			entity = QUERY_RUNNER.query(getConnection(), sql, new BeanHandler<>(entityClass), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+		return entity;
+	}
+
+	public static <T> int executeUpdate(Class<T> entityClass, String sql, Object... params) {
+		int rows = 0;
+
+		try {
+			rows = QUERY_RUNNER.update(getConnection(), sql, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		closeConnection();
+
+		return rows;
+	}
+
+	public static <T> boolean insert(Class<T> entityClass, T entity) {
+		StringBuilder sql1 = new StringBuilder("insert into " + entityClass.getSimpleName() + " (");
+		StringBuilder sql2 = new StringBuilder(" values (");
+		Object[] params = new Object[entityClass.getDeclaredFields().length];
+
+		Field[] fields = entityClass.getDeclaredFields();
+
+		int index = 0;
+		for (Field field : fields) {
+			field.setAccessible(true);
+			LOGGER.info("field:" + field.getName());
+			sql1.append(field.getName() + ",");
+			sql2.append("?,");
+			try {
+				params[index] = field.get(entity);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			index++;
+		}
+
+		LOGGER.info("111111:" + sql1.toString());
+
+		int lastIndexOf = sql1.lastIndexOf(",");
+		sql1 = sql1.replace(lastIndexOf, sql1.length(), ") ");
+		int lastIndexOf2 = sql2.lastIndexOf(",");
+		sql2.replace(lastIndexOf2, sql2.length(), ") ");
+
+		sql1.append(sql2);
+
+		LOGGER.info("sql1:" + sql1);
+		LOGGER.info("params:" + params);
+
+		
+		try {
+			QUERY_RUNNER.insert(getConnection(), sql1.toString(), new BeanHandler<>(entityClass), params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally{
 			closeConnection();
 		}
-		
-		
-		return entity;
+
+		return true;
 	}
 
 }

@@ -38,7 +38,7 @@ public class CustomerServiceTest {
 		
 		boolean createCustomer = customerService.createCustomer(customer);
 		
-		Assert.assertTrue(createCustomer);
+		Assert.assertEquals(true, createCustomer);
 		
 	}
 
