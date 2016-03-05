@@ -10,14 +10,16 @@ public class CustomerService {
 	public List<Customer> getCustomerList(){
 		String sql = "select * from customer";
 		
-		List<Customer> customers = DatabaseUtil.queryEntityList(Customer.class, sql, new Object[]{});
+		List<Customer> customers = DatabaseUtil.queryEntityList(Customer.class, sql);
 		
 		return customers;
 		
 	}
 	
 	public Customer getCustomer(Integer id){
-		return null;
+		String sql = "select * from customer where id=?";
+		Customer customer = DatabaseUtil.queryEntity(Customer.class, sql, new Object[]{1});
+		return customer;
 		
 	}
 	
