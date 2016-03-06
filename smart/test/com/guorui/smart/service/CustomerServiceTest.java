@@ -36,9 +36,9 @@ public class CustomerServiceTest {
 	public void testCreateCustomer() {
 		Customer customer = new Customer(3,"haha","666","145","haha@qq.com","unittest");
 		
-		boolean createCustomer = customerService.createCustomer(customer);
+		Customer createCustomer = customerService.createCustomer(customer);
 		
-		Assert.assertEquals(true, createCustomer);
+		Assert.assertEquals(customer, createCustomer);
 		
 	}
 
@@ -46,6 +46,7 @@ public class CustomerServiceTest {
 	public void testUpdateCustomer() {
 		Customer customer = new Customer(3,"haha","666","145","haha@qq.com","unittest");
 		customer.setEmail("haha@hotmail.com");
+		customer.setName("changed");
 		
 		boolean updateCustomer = customerService.updateCustomer(customer);
 		
@@ -54,7 +55,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testDeleteCustomer() {
-		boolean deleteCustomer = customerService.deleteCustomer(3);
+		boolean deleteCustomer = customerService.deleteCustomer(9);
 		Assert.assertTrue(deleteCustomer);
 	}
 

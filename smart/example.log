@@ -134,3 +134,119 @@ INFO main com.guorui.smart.util.DatabaseUtil - field:remark
 INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
 INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
 INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@1637f22
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@163425a
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@11baa65
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 0
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@11f989e
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 0
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@48bfd
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 3
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@1c14f68
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 4
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@13afe78
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 5
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@13afe78
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 6
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@13afe78
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 7
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@13afe78
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.service.CustomerService - 8
+INFO main com.guorui.smart.util.DatabaseUtil - field:id
+INFO main com.guorui.smart.util.DatabaseUtil - field:name
+INFO main com.guorui.smart.util.DatabaseUtil - field:contact
+INFO main com.guorui.smart.util.DatabaseUtil - field:telephone
+INFO main com.guorui.smart.util.DatabaseUtil - field:email
+INFO main com.guorui.smart.util.DatabaseUtil - field:remark
+INFO main com.guorui.smart.util.DatabaseUtil - 111111:insert into Customer (id,name,contact,telephone,email,remark,
+INFO main com.guorui.smart.util.DatabaseUtil - sql1:insert into Customer (id,name,contact,telephone,email,remark)  values (?,?,?,?,?,?) 
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@13afe78
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.util.DatabaseUtil - update sql:update Customer set name=?, contact=?, telephone=?, email=?, remark=? where id=?
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@6c658
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}
+INFO main com.guorui.smart.util.DatabaseUtil - update sql:update Customer set name=?, contact=?, telephone=?, email=?, remark=? where id=?
+INFO main com.guorui.smart.util.DatabaseUtil - params:[Ljava.lang.Object;@6c658
+INFO main com.guorui.smart.util.PropsUtil - loaded properties file:{0}

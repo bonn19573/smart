@@ -61,6 +61,26 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", contact=" + contact + ", telephone=" + telephone + ", email=" + email + ", comment=" + remark + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 
 }

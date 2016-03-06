@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.slf4j.Logger;
@@ -16,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 public class DatabaseUtil {
 
-	private static final QueryRunner QUERY_RUNNER = new QueryRunner();
+	public static final QueryRunner QUERY_RUNNER = new QueryRunner();
 
 	private static final ThreadLocal<Connection> CONN = new ThreadLocal<>();
 
@@ -103,7 +105,7 @@ public class DatabaseUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			closeConnection();
+//			closeConnection();
 		}
 
 		return entity;
@@ -119,12 +121,13 @@ public class DatabaseUtil {
 			e.printStackTrace();
 		}
 
-		closeConnection();
+//		closeConnection();
 
 		return rows;
 	}
 
-	public static <T> boolean insert(Class<T> entityClass, T entity) {
+	public static <T> boolean insert(T entity) {
+		Class<?> entityClass = entity.getClass();
 		StringBuilder sql1 = new StringBuilder("insert into " + entityClass.getSimpleName() + " (");
 		StringBuilder sql2 = new StringBuilder(" values (");
 		Object[] params = new Object[entityClass.getDeclaredFields().length];
@@ -161,17 +164,76 @@ public class DatabaseUtil {
 		LOGGER.info("sql1:" + sql1);
 		LOGGER.info("params:" + params);
 
-		
 		try {
 			QUERY_RUNNER.insert(getConnection(), sql1.toString(), new BeanHandler<>(entityClass), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally{
-			closeConnection();
+		} finally {
+//			closeConnection();
 		}
 
 		return true;
 	}
+	
+	public static <T,I> boolean update(T entity,I id){
+		Class<?> entityClass = entity.getClass();
+		
+		T entity2 = (T) queryEntity(entityClass, "select * from "+entityClass.getSimpleName()+" where id=?", id);
+		if(entity2 == null){
+			throw new RuntimeException("record not exist in database, cannot update");
+		}
+		
+		StringBuilder stringBuilder = new StringBuilder("update "+entityClass.getSimpleName() +" set ");
+		Object[] params = new Object[entityClass.getDeclaredFields().length];
+		Field[] declaredFields = entityClass.getDeclaredFields();
+		int index = 0;
+		for (Field field : declaredFields) {
+			field.setAccessible(true);
+			if(!field.getName().equals("id")){
+				stringBuilder.append(field.getName()+"=?, ");
+				try {
+					params[index++] = field.get(entity);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		int lastIndexOf = stringBuilder.lastIndexOf(",");
+		stringBuilder.replace(lastIndexOf, stringBuilder.length(), "");
+		stringBuilder.append(" where id=?");
+		params[index++] = id;
+		
+		LOGGER.info("update sql:"+stringBuilder.toString());
+		LOGGER.info("params:"+params);
+		
+		int update = 0;
+		try {
+			update = QUERY_RUNNER.update(getConnection(), stringBuilder.toString(), params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return update>0;
+	}
+	
+	
+	public static <T,I> boolean delete(Class<T> entityClass,I id){
+		int update = 0;
+		try {
+			update = QUERY_RUNNER.update(getConnection(), "delete from "+entityClass.getSimpleName()+" where id=?", id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return update>0;
+	}
+
+
 
 }
