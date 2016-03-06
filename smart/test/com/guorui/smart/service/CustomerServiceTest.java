@@ -1,5 +1,9 @@
 package com.guorui.smart.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import org.junit.Assert;
@@ -7,14 +11,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.guorui.smart.model.Customer;
+import com.guorui.smart.util.DatabaseUtil;
 
 public class CustomerServiceTest {
 	
-	private CustomerService customerService;
+	private CustomerService customerService = new CustomerService();
 	
 	@Before
-	public void init(){
-		customerService = new CustomerService();
+	public void init() throws IOException{
+		String file = "sql/customer_init.sql";
+		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(file);
+		
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+		String sql = null;
+		while((sql = bufferedReader.readLine()) != null){
+			DatabaseUtil.executeUpdate(sql);
+		}
 	}
 
 	@Test
@@ -44,7 +56,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testUpdateCustomer() {
-		Customer customer = new Customer(3,"haha","666","145","haha@qq.com","unittest");
+		Customer customer = new Customer(2,"haha","666","145","haha@qq.com","unittest");
 		customer.setEmail("haha@hotmail.com");
 		customer.setName("changed");
 		
@@ -55,7 +67,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testDeleteCustomer() {
-		boolean deleteCustomer = customerService.deleteCustomer(9);
+		boolean deleteCustomer = customerService.deleteCustomer(2);
 		Assert.assertTrue(deleteCustomer);
 	}
 

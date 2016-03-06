@@ -3,14 +3,12 @@ package com.guorui.smart.util;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.slf4j.Logger;
@@ -27,6 +25,8 @@ public class DatabaseUtil {
 	private static String URL;
 	private static String USERNAME;
 	private static String PASSWORD;
+	
+	private static final BasicDataSource DATA_SOURCE = new BasicDataSource();
 
 	static {
 		try {
@@ -35,6 +35,12 @@ public class DatabaseUtil {
 			URL = p.getProperty("jdbc.url");
 			USERNAME = p.getProperty("jdbc.username");
 			PASSWORD = p.getProperty("jdbc.password");
+			
+			DATA_SOURCE.setDriverClassName(DRIVER_CLASS);
+			DATA_SOURCE.setUrl(URL);
+			DATA_SOURCE.setUsername(USERNAME);
+			DATA_SOURCE.setPassword(PASSWORD);
+			
 
 			// Class.forName(DRIVER_CLASS);
 		} catch (IOException e) {
@@ -55,7 +61,7 @@ public class DatabaseUtil {
 
 		if (connection == null) {
 			try {
-				connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				connection = DATA_SOURCE.getConnection();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -66,21 +72,6 @@ public class DatabaseUtil {
 		return connection;
 	}
 
-	public static void closeConnection() {
-		Connection connection = CONN.get();
-		if (connection != null) {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			} finally {
-				connection = null;
-			}
-		}
-	}
-
 	public static <T> List<T> queryEntityList(Class<T> entityClass, String sql, Object... params) {
 		Connection conn = getConnection();
 		List<T> list = null;
@@ -89,9 +80,7 @@ public class DatabaseUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			closeConnection();
-		}
+		} 
 
 		return list;
 	}
@@ -104,14 +93,12 @@ public class DatabaseUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-//			closeConnection();
-		}
+		} 
 
 		return entity;
 	}
 
-	public static <T> int executeUpdate(Class<T> entityClass, String sql, Object... params) {
+	public static <T> int executeUpdate(String sql, Object... params) {
 		int rows = 0;
 
 		try {
@@ -121,7 +108,6 @@ public class DatabaseUtil {
 			e.printStackTrace();
 		}
 
-//		closeConnection();
 
 		return rows;
 	}
@@ -169,9 +155,7 @@ public class DatabaseUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-//			closeConnection();
-		}
+		} 
 
 		return true;
 	}
@@ -179,6 +163,7 @@ public class DatabaseUtil {
 	public static <T,I> boolean update(T entity,I id){
 		Class<?> entityClass = entity.getClass();
 		
+		@SuppressWarnings("unchecked")
 		T entity2 = (T) queryEntity(entityClass, "select * from "+entityClass.getSimpleName()+" where id=?", id);
 		if(entity2 == null){
 			throw new RuntimeException("record not exist in database, cannot update");
