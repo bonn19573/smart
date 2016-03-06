@@ -1,6 +1,9 @@
 package com.guorui.smart.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -219,6 +222,16 @@ public class DatabaseUtil {
 		return update>0;
 	}
 
+	
+	public static void executeSqlFile(String file) throws IOException{
+		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(file);
+		
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+		String sql = null;
+		while((sql = bufferedReader.readLine()) != null){
+			DatabaseUtil.executeUpdate(sql);
+		}
+	}
 
 
 }
